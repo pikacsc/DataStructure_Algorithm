@@ -63,12 +63,12 @@ public:
 
 	bool operator == (const CVector_Iterator& iter)
 	{
-		return iter.m_Node->m_Data == m_Node->m_Data;
+		return iter.m_Node == m_Node;
 	}
 
 	bool operator != (const CVector_Iterator& iter)
 	{
-		return iter.m_Node->m_Data != m_Node->m_Data;
+		return iter.m_Node != m_Node;
 	}
 
 	T& operator * ()
