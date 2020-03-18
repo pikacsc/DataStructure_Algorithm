@@ -21,6 +21,10 @@ private:
 	CStackNode<T>*	m_pNext;
 };
 
+
+//Queue 와 Stack 은 탐색이 불가능하도록 설계되어서
+//Iterator 가 존재하지 않음
+
 template <typename T>
 class CStack
 {
@@ -100,6 +104,11 @@ public:
 	bool empty() const
 	{
 		return m_uiSize == 0;
+	}
+	
+	void printStack(void) const
+	{
+
 	}
 };
 

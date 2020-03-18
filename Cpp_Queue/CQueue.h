@@ -7,9 +7,6 @@ class CQueueNode
 	template <typename T>
 	friend class CQueue;
 
-	template <typename T>
-	friend class CQueue_Iterator;
-
 private:
 	CQueueNode(const T& _data = NULL)
 		:m_Data(_data),m_pNext(nullptr)
@@ -40,54 +37,11 @@ private:
 	T				m_Data;
 	CQueueNode<T>*	m_pPrev;
 	CQueueNode<T>*	m_pNext;
-};
-
-template <typename T>
-class CQueue_Iterator
-{
-	template <typename T>
-	friend class CQueue;
-private:
-	CQueueNode<T>* m_pNode;
-
-public:
-	CQueue_Iterator()
-		:m_pNode(nullptr)
-	{
-	}
-
-	~CQueue_Iterator()
-	{
-	}
-
-public:
-	bool operator == (CQueue_Iterator<T>& iter)
-	{
-		return iter.m_pNode == m_pNode;
-	}
-
-	bool operator != (CQueue_Iterator<T>& iter)
-	{
-		return iter.m_pNode != m_pNode;
-	}
-
-
-	void operator ++ (void)
-	{
-		m_pNode = m_pNode->m_pNext;
-	}
-
-	void operator -- (void)
-	{
-		m_pNode = m_pNode->m_pPrev;
-	}
-
-	T operator * (void)
-	{
-		return m_pNode->m_Data;
-	}
 
 };
+
+//Queue 와 Stack 은 탐색이 불가능하도록 설계되어서
+//Iterator 가 존재하지 않음
 
 template <typename T>
 class CQueue
@@ -98,8 +52,6 @@ private:
 	PNODE m_Begin;
 	PNODE m_End;
 	int	  m_iSize;
-public:
-	typedef CQueue_Iterator<T> iterator;
 
 public:
 	CQueue()
@@ -230,7 +182,7 @@ public:
 	void printQueue(void)
 	{
 		
-		printf("\n last");
+		printf("\nlast");
 		for (int i = 0; i <= m_iSize-2; i++)
 		{
 			printf("  "); 
@@ -243,27 +195,15 @@ public:
 			printf("  ");
 		}
 		printf("↓\n");
-		iterator iBegin = iterBegin();
-		iterator iEnd;
-		for (iEnd = iterEnd(); iEnd != iBegin; --iEnd)
+		PNODE pBegin = m_Begin;
+		PNODE pEnd = m_End;
+		while (pEnd != pBegin)
 		{
-			std::cout << *iEnd << " ";
+			pEnd = pEnd->m_pPrev;
+			std::cout << " "<< pEnd->m_Data;
 		}
 		printf("\n");
 	}
-public:
-	iterator iterBegin() const
-	{
-		iterator iter;
-		iter.m_pNode = m_Begin;
-		return iter;
-	}
 
-	iterator iterEnd() const
-	{
-		iterator iter;
-		iter.m_pNode = m_End;
-		return iter;
-	}
 };
 
