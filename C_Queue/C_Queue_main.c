@@ -47,20 +47,21 @@ void pop(QUEUE* _pQueue, char* _pData);
 //swaps the contents
 void swap(QUEUE* _queue_1, QUEUE* _queue_2);
 
-
+//delete all nodes
+void deleteAll(QUEUE* _queue);
 
 int main()
 {
 	QUEUE queue;
 	InitQueue(&queue);
 
-	QUEUE queue2; //for testing swap;
-	InitQueue(&queue2);
+	//QUEUE queue2; //for testing swap;
+	//InitQueue(&queue2);
 
-	push(&queue2, "Cherry");
-	push(&queue2, "Banana");
-	push(&queue2, "Apple");
-	swap(&queue, &queue2);
+	//push(&queue2, "Cherry");
+	//push(&queue2, "Banana");
+	//push(&queue2, "Apple");
+	//swap(&queue, &queue2);
 
 	int input = 0;
 	bool IsValid = 0;
@@ -132,7 +133,8 @@ int main()
 			printf("\n%s removed\n", Data);
 		}
 	}
-	
+	deleteAll(&queue);
+//	deleteAll(&queue2);
 
 	return 0;
 }
@@ -226,4 +228,23 @@ void swap(QUEUE* _queue_1, QUEUE* _queue_2)
 
 	_queue_1->iSize ^= _queue_2->iSize ^= _queue_1->iSize ^= _queue_2->iSize;
 
+}
+
+void deleteAll(QUEUE* _queue)
+{
+	if (empty(_queue))
+	{
+		return;
+	}
+	else
+	{
+		PNODE tempNode = _queue->pHead;
+		PNODE nextNode = NULL;
+		while (tempNode)
+		{
+			nextNode = tempNode->pNext;
+			free(tempNode);
+			tempNode = nextNode;
+		}
+	}
 }
