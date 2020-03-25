@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01.Maze">
+      <UniqueIdentifier>{c654d9fd-d817-4502-87ba-c521383166f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Common">
+      <UniqueIdentifier>{3af34d92-0f20-44d6-aa1e-2a6a16d5de6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Player">
+      <UniqueIdentifier>{aff4931c-ce81-42e1-b293-626210d11f72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Cpp_Graph_maze_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Maze.cpp">
+      <Filter>01.Maze</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>00.Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>02.Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Maze.h">
+      <Filter>01.Maze</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>00.Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>02.Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
