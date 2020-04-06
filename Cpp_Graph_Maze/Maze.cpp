@@ -33,14 +33,14 @@ void Maze::GenerateMazeBySideWinder()
 {
 	for (int y = 0; y < m_iSize; y++)
 	{
-		int count = 1;
+		int xCount = 1;
 		for (int x = 0; x < m_iSize; x++)
 		{
-			if (x % 2 == 0 || y % 2 == 0)
+			if (x % 2 == 0 || y % 2 == 0) // 짝수
 			{
 				continue;
 			}
-			if (y == m_iSize - 2 && x == m_iSize - 2)
+			if (y == m_destPos.y && x == m_destPos.x) // 목적지
 			{
 				continue;
 			}
@@ -54,16 +54,16 @@ void Maze::GenerateMazeBySideWinder()
 				m_ppMazeMap[y + 1][x] = e_BlockType::Road; // 세로 축 으로 뚫기
 				continue;
 			}
-			if (int_rand(0, 2) == 0)
+			if (int_rand(0, 2) == 0) //랜덤 숫자가 0인경우, 가로축 으로 뚫기
 			{
-				m_ppMazeMap[y][x + 1] = e_BlockType::Road;
-				count++;
+				m_ppMazeMap[y][x + 1] = e_BlockType::Road; 
+				xCount++; //가로축으로 뚫은 경우를 세어놓음
 			}
-			else
+			else //아닌 경우, 가로축으로 뚫은 경우의 수 중에 하나를 찝어서 세로로 파기
 			{
-				int randomIndex = int_rand(0, count);
-				m_ppMazeMap[y + 1][x - randomIndex * 2] = e_BlockType::Road;
-				count = 1;
+				int randomXindex = int_rand(0, xCount - 1); 
+				m_ppMazeMap[y + 1][x - randomXindex * 2] = e_BlockType::Road;
+				xCount = 1;
 			}
 		}
 	}
@@ -79,7 +79,7 @@ void Maze::GenerateMazeByBinaryTree()
 			{
 				continue; //뚫지 않기
 			}
-			if (y == m_iSize - 2 && x == m_iSize - 2) //목적지
+			if (y == m_destPos.y && x == m_destPos.x) //목적지
 			{
 				continue; //뚫지 않기
 			}
@@ -139,9 +139,9 @@ bool Maze::Init()
 	{
 		for (int x = 0; x < m_iSize; x++)
 		{
-			if (x % 2 == 0 || y % 2 == 0)
+			if (x % 2 == 0 || y % 2 == 0) // 짝수는 벽으로 채우고, 홀수는 길로 채우기
 			{
-				m_ppMazeMap[y][x] = e_BlockType::Wall;
+				m_ppMazeMap[y][x] = e_BlockType::Wall; 
 			}
 			else
 			{
@@ -182,6 +182,11 @@ void Maze::Render()
 	}
 	//set default color
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+}
+
+int Maze::GetMapSize(void) const
+{
+	return m_iSize;
 }
 
 static int GetBlockColorNum(e_BlockType _blockType)

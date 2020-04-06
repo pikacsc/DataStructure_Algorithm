@@ -22,6 +22,8 @@ public:
 	//¹Ì·Î ·»´õ¸µ
 	void Render();
 
+	int GetMapSize(void) const;
+
 	void SetPlayer(Player* _player);
 
 	POINT GetDestPos(void) const;

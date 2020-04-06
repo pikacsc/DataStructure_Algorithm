@@ -2,6 +2,8 @@
 #include <iostream>
 #include <Windows.h>
 #include <vector>
+#include <queue>
+#include <stack>
 #include <random>
 
 constexpr int g_startX = 1;

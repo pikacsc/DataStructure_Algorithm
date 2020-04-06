@@ -17,6 +17,8 @@ private:
 	int		    m_Dir;
 	class Maze*	m_Map;
 	std::vector<POINT> m_pointsVect;
+	std::stack<POINT> m_pointsStack;
+	int			m_iStackCount;
 public:
 	Player(int _x, int _y);
 	~Player();
@@ -31,5 +33,7 @@ public:
 
 private:
 	void RightHand();
+	void DFS();
+	void BFS();
 };
 
